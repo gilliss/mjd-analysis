@@ -1,0 +1,25 @@
+====================
+Contents:
+====================
+-ElectronInteractionAnalysis.cxx
+-MaterialInteraction.h
+-MaterialInteraction.cxx
+-ParticleTrack.h
+-ParticleTrack.cxx
+====================
+Description:
+====================
+Changes made to particular files in the MaGe Validation suite to study containment efficiency of betas for 0nbb analysis. The changes implemented methods to calculate the net displacement of betas rather than the total path length of betas.
+
+Added net displacement plots in ElectronInteractionAnalysis.cxx. Added GetAverageNetDisplacement() method in MaterialInteraction.*. Added GetNetDisplacement() method in ParticleTrack.*.
+====================
+Instructions:
+====================
+Place ElectronInteractionAnalysis.cxx and MaterialInteraction.* in MaGe/validation/ElectronInteractions/.
+Place ParticleTrack.* in MaGe/validation/VaLi/.
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+July 2017

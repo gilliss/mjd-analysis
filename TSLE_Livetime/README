@@ -1,0 +1,24 @@
+====================
+Contents:
+====================
+-README
+-dT.hh
+-dT.cc
+-dT_splitjobs.cc
+====================
+Description:
+====================
+Scripts to calculate time since last event (TSLE, also referred to as dT). These scripts were used to calculate livetime via TSLE for potential use in the 0nbb result exposure.
+The *_splitjobs.cc script does the same thing as dT.cc, but splits the jobs into data subsets (was used to split up DS5, which was large).
+====================
+Instructions:
+====================
+Execute dT.cc with ./dT <DS> <dataType (Bg=0,Cal=1)>
+Execute dT_splitjobs.cc with ./dT_splitjobs <DS> <dataType> <subsetLo> <subsetHi>
+These scripts will output ROOT files with branches for channel, run, TSLE (dT), and globalTime. 
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+May 2017

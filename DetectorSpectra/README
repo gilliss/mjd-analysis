@@ -1,0 +1,22 @@
+====================
+Contents:
+====================
+-README
+-CreateDSChannelMapsFile.C
+-Makefile
+-DetectorSpectra.cc
+====================
+Description:
+====================
+Script to produce detector spectra.
+====================
+Instructions:
+====================
+Create channel map file by executing the CreateDSChannelMapsFile.C macro
+Run executable for DetectorSpectra.cc as $ ./DetectorSpectra <DS> <cryostat> <cutScheme> 
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+November 2017

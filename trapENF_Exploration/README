@@ -1,0 +1,24 @@
+====================
+Contents:
+====================
+-README
+-EffPZTrapFilter.cc
+-EffPZQTC_BuiltData.cc
+-t0FixedTimePickoff*.pdf
+====================
+Description:
+====================
+EffPZTrapFilter is an exploration of how the effPZ trap filter reshapes waveforms and aligns there slopes. Also how that process accounts for the convoluted processes of ballistic deficit and charge trapping.
+Simulated WFs come from pysiggen_example/plot_waveform_getlist.py
+
+t0FixedTimePickoff and EffPZQTC_BuiltData are an exploration of how the StartTimeFinder and FixedTimePickoff processors work in GAT/MGDO. Also how those processors end up giving us trapENFCal.
+====================
+Instructions:
+====================
+
+====================
+Author:
+====================
+Tom Gilliss
+gilliss@unc.edu
+January 2017

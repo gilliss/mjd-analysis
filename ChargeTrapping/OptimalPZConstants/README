@@ -1,0 +1,31 @@
+====================
+Contents:
+====================
+-README
+-FindOptimal.cc
+-FindOptimal_ADC.cc
+-GraphSTC.cc
+-GraphDS.cc
+-GraphSTCvDS.cc
+====================
+Description:
+====================
+Examining optimal effective pole-zero time constants and inferring mean free drift times of charge carriers.
+
+Scripts were developed in the MJSW 201610 environment.
+====================
+Instructions:
+====================
+1.) Run FindOptimal.cc (./FindOptimal <arg>) on each DS and each STC. This reads in Pinghan's .txt data files, finds the optimal tau & fwhm, and outputs a text file (OptimalFWHMvsTau_*.txt) of the following form.
+[chan] [optTau] [eoptTau] [optFWHM] [eoptFWHM] [qtTau]
+The script also outputs a root file (FWHMvsTau_*.root) containing FWHM-vs-tau plots for each detector. FindOptimal_ADC.cc omits conversions to keV.  
+2.) run GraphSTC.cc to make a graph of the tauQT values for each STC detector. Save this graph to an "UPDATE" root file STCvDS_tauQT_graphs.root.
+3.0) put the detSN list "detSNVec.push_back("<<detSN<<");" into the remaining scripts. This allows the remaining scripts to know which DS detectors to draw.
+3.) run GraphDS.cc (./GraphDS <arg>) on each DS to make a graph of the tauQT values for each DS detector that is also in the STC data. Save these graphs to the same "UPDATE" root file as above (STCvDS_tauQT_graphs.root).
+4.) run GraphSTCvDS.cc to combine the graphs into a multi graph
+====================
+Author:
+====================
+Tom Gilliss
+gilliss@unc.edu
+December 2015, May 2017

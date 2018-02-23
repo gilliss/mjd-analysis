@@ -1,0 +1,19 @@
+====================
+Contents:
+====================
+-README
+-Query_hfftdet.cc
+====================
+Description:
+====================
+Script to get integrated power spectral density, within a few frequency bands, for past runs. Write results to JSON files to be put on CouchDB.
+====================
+Instructions:
+====================
+Execute with $ ./Query_hfftdet <run>
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+December 2017

@@ -1,0 +1,20 @@
+====================
+Contents:
+====================
+-README
+-WF_FFT.cc
+-WF_FFT_Snippet.cc
+====================
+Description:
+====================
+Minimal working script to pull waveforms from MJD data structure and apply FFT. Written for pedagogical purposes for a mentored NCSSM student. Used as a building block for https://github.com/stew31415/majorana_fft and https://github.com/stew31415/usrp_sdr.
+====================
+Instructions:
+====================
+Execute WF_FFT.cc (no args)
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+October 2017

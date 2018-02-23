@@ -1,0 +1,29 @@
+====================
+Contents:
+====================
+-README
+-FWHMvsTau_AllChan.cc
+-TauvsChan.cc
+-TauvsChan_Uncorrected.cc
+-PlotCorrectedVsUncorrected.cc
+====================
+Description:
+====================
+Exploring effect of pole-zero time constants on energy resolution.
+
+FWHMvsTau_AllChan.cc saves plots of FWHM vs Tau for each channel in a DS. It also saves a text file of ~chan:optTau:optFWHM for the DS.
+
+TauvsChan.cc For one DS, plots optTau vs chan. Also plots optFWHM vs chan. It uses the OptimalFWHMvsTau_DS#.txt file that FWHMvsTau_AllChan.cc creates. Adds the plot to an "Update" ROOT file. From the ROOT file, one can make TMultiGraphs of DSs
+====================
+Instructions:
+====================
+1.) Run FWHMvsTau_AllChan.cc on each DS/STC.
+2.) Then run TauvsChan.cc on each DS/STC.
+3.) Then run TauvsChan_Uncorrected to make correction-vs-uncorrection plots.
+4.) PlotCorrectedVsUncorrected to draw/visualize the correction-vs-uncorrection plots
+====================
+Author:
+====================
+Tom Gilliss
+gilliss@unc.edu
+December 2015

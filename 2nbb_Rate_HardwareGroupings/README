@@ -1,0 +1,36 @@
+====================
+Contents:
+====================
+-2nuBB_Systematics.cc
+-2nuBB_RateByDet.cc
+-2nuBB_RateByString.cc
+-2nuBB_RateByCC.cc
+-2nuBB_RateByMB.cc
+====================
+Description:
+====================
+Scripts to calculate the event rate between 1000-1400 keV for different groupings of hardware. A check on 2nbb rate.
+First script calculates the rate for each detector, and the subsequent scripts combine the individual detector rates accoring to hardware grouping.
+====================
+Instructions:
+====================
+1.) Make an up-to-date DSChannelMaps.root file by executing the CreateDSChannelMapsFile.C ROOT macro.
+2.) Execute 2nuBB_Systematics.cc, using the following syntax.
+	./2nuBB_Systematics <DS> <Module> <CutScheme>		
+This script outputs a root file with energy histograms for each det, as well as a text file with the integral within the specified ROI, and other useful info.
+Run this on each DS, Module, and CutScheme.
+3.) Run the secondary scripts to get the 2nubb rate by hardware grouping. Syntax is "./2nubb_RateBy*.cc <DS> <Module> <enrType> <save>." Run this on each DS, Module, and enrType. 
+	2nuBB_RateByDet.cc
+		This script makes a scatter plot of all detector rates in the specified ROI, for detectors of a given enrichment type. It overlays these results by cut. 
+	2nuBB_RateByString.cc
+	2nuBB_RateByCC.cc
+		Script is hardcoded with the kPreampDigitizer numbers for the relevant modules and DSs.
+	2nuBB_RateByMB.cc
+		Script is hardcoded with the CC and MB mapping for the relevant modules and DSs
+
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+October 2017

@@ -1,0 +1,35 @@
+====================
+Contents:
+====================
+-README
+-CreateDSChannelMapsFile.C
+-CalibrationAvsE.cc
+-SavePlots_CalibrationAvsE.cc
+-PlotChan_CalibrationAvsE.cc
+====================
+Description:
+====================
+Plot AvsE distributions from the 208Tl 2614 keV DEP region of calibration runs. Focus on the good HG channels in the following DS4 calibration run ranges.
+60001442 60001461
+60001508 60001521 <--- last "good" cal of DS4
+60001578 60001592
+60001720 60001732
+60001855 60001868
+60001914 60001926
+
+Excluded HG channels are: 1108,1110,1138,1140,1142,1144,1168,1202,1206,1208,1234,1238,1268,1302,1304,1328
+
+Note that some directories, plotting parameters, etc were hardcoded for expediency.
+====================
+Instructions:
+====================
+1.) Make an up-to-date DSChannelMaps.root file by executing the CreateDSChannelMapsFile.C ROOT macro.
+2.) Run CalibrationAvsE.cc on each needed calibration run range. The associated DS also needs to be specified. This produces root files of AvsE histograms for each channel and energy region.
+3.) Run SavePlots_CalibrationAvsE.cc on each needed calibration run range -- with DS also specified. This produces PDF files for each channel with the various AvsE distributions for a channel plotted on the same plot.
+4.) Optional: can run PlotChan_CalibrationAvsE.cc to make the overlayed plot for a single channel in a single calibration run range.
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+July 2017

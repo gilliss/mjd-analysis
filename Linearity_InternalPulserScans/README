@@ -1,0 +1,46 @@
+====================
+Contents:
+====================
+-CreateDSChannelMapsFile.C
+-ProduceChannelList.cc
+-ProducePreampDigitizerList.cc
+-PulserLinSingleChanAndAtten.cc
+-PlotSavedSingleChanAndAtten.cc
+-GetWiggle.cc
+====================
+Description:
+====================
+Basic analysis of front-end pulser scans to assess linearity. The pulser scans are primarily intended as a rough check on the standard non-linearity correction.
+
+Data sequentially increments the amplitude of internal pulsers, whose pulses are digitized. Assuming the linearity of the pulsers, over a given region, the scan data are used to assess the linearity of ADCs. The pulsers can be attenuated in order to test lower energies with full range of amplitude settings.
+ 
+Pulser scan data sets taken so far:
+        8/12/16 P42664A (C1P2D2)
+                https://majorana.npl.washington.edu/elog/Run+Elog/1447
+        9/22/16 M1
+                https://majorana.npl.washington.edu/elog/Run+Elog/1560
+        10/11/16 M1 & M2
+                https://majorana.npl.washington.edu/elog/Run+Elog/1595
+                https://majorana.npl.washington.edu/elog/Run+Elog/1594
+        4/21/2017 M1 & M2
+                https://majorana.npl.washington.edu/elog/Run+Elog/1774
+====================
+Instructions:
+====================
+1.) Make an up-to-date DSChannelMaps.root file by executing the CreateDSChannelMapsFile.C ROOT macro.
+2.) Explore the data and determine the run ranges for each attenuation, as well as any data cleaning that may need to be done.
+3.) Run ProduceChannelList.cc and make sure that the list of channels in the data matches the list in PlotSavedSingleChanAndAtten.cc, GetWiggle.cc, and elsewhere. Can also run ProducePreampDigitizerList.cc to have that mapping as a reference.
+4.) Make sure the path to the desired files is correct in the TFile and Residual File used by PulserLinSingleChanAndAtten.cc. Also check the gatified file path in PulserLinSingleChanAndAtten.cc and PlotSavedSingleChanAndAtten.cc.
+5.) Create results/ directory.
+6.) Execute PulserLinSingleChanAndAtten.cc on the desired module, run range, energy estimator, pulser attenuation setting. Syntax is:
+	./PulserLinSingleChanAndAtten <module> <startRun> <endRun> <channel> <energyEstimator> <attenuationSetting> <doSave>	
+7.) Execute PlotSavedSingleChanAndAtten.cc on each module, energy estimator, and attenuation. Syntax is:
+	./PlotSavedSingleChanAndAtten <module> <energyEstimator> <attenuationSetting> <gain>
+8.) Execute GetWiggle.cc to get the RMS wiggle of each channel. Syntax is:
+	./GetWiggle <module> <energyEstimator> <attenuationSetting> <gain>
+====================
+Author:
+====================
+Tom Gilliss
+gilliss@unc.edu
+July 2017

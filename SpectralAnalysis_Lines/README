@@ -1,0 +1,29 @@
+====================
+Contents:
+====================
+-README
+-CreateDSChannelMapsFile.C
+-DetermineIsGoodDetectors.cc
+-MultiLine.hh
+-MultiLine.cc
+-MultiLine_Line.cc
+-MultiLine_DSLineMultiGraph.cc
+====================
+Description:
+====================
+Calculate rates within a collection of spectral lines. Specify collection of spectral lines as isotopes and energies. 
+====================
+Instructions:
+====================
+1.) Make an up-to-date DSChannelMaps.root file by executing the CreateDSChannelMapsFile.C ROOT macro.
+2.) Execute DetermineIsGoodDetectors.cc to inform the corresponding function in MultiLine.hh. Run on each DS and Module. This script considers "good" detectors to be those that are in the channel map, that are not pulser tagging channels, and that have >0 counts.
+3.) Make sure that each script is using the same list of isotopes & lines & GAT versions. Make sure that all desired DSs are accomodated in the code. Make sure that data types of analysis parameters match the types used in the relevant skim file version.
+4.) Execute MultiLine.cc to make TH1s for each line for each det, and to make output text file of data. Run on each DS and Module. Move output files to a "results/" directory
+5.) Execute MultiLine_Line.cc to make some plots of rate by line and save them in a single UPDATE root file "DS_MultiLine_Graphs.root". Run on each DS and Module.
+6.) MultiLine_DSLineMultiGraph.cc to combine rate-by-line plots from various DSs. Can swap out between plotting PkCnt (sideband subtracted) and RoiCnt (raw counts)  
+====================
+Author: 
+====================
+Tom Gilliss
+gilliss@unc.edu
+August 2017
