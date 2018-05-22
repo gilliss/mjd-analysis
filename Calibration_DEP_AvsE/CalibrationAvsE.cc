@@ -3,27 +3,6 @@
 // ref: /Users/tomgilliss/Desktop/UNC/ENAP/Analysis/Livetime/ChannelPlots.cc
 //
 // http://mjwiki.npl.washington.edu/bin/view/Majorana/DS4Cal
-// x x 60001442 60001461
-// 60001442 60001507 <--- covered region
-// x x 60001508 60001521 <--- last "good" cal of DS
-// x x 60001578 60001592
-// 60001578 60001719 <--- covered region
-// x x 60001720 60001732
-// 60001720 60001854 <--- covered region
-// x x 60001855 60001868
-// 60001855 60001913 <--- covered region
-// x x 60001914 60001926
-// 60001914 60002394 <--- covered region
-//
-//
-//
-//AvsE distributions, from the 208Tl FEP/SEP/DEP/0nbbROI, for each channel in the following DS4 calibration sets:
-//60001442 60001461
-//60001508 60001521 <--- last "good" cal of DS4
-//60001578 60001592
-//60001720 60001732
-//60001855 60001868
-//60001914 60001926
 //
 //
 // ./CalibrationAvsE 4 60001442 60001461
@@ -74,7 +53,7 @@ double GetHalfROI(double E) {
 int main (int argc, char* argv[])
 {
     //TApplication *App = new TApplication("App", 0, NULL);
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////
     /////////// Command line arguments and initializations
@@ -92,13 +71,13 @@ int main (int argc, char* argv[])
     int startRun = atoi(argv[2]);
     int endRun = atoi(argv[3]);
     cout<<"DS "<<DS<<" "<<startRun<<"-"<<endRun<<endl;
-    
+
     double FEP = 2614.533; int iFEP = 0;
     double SEP = FEP - 511.; int iSEP = 1;
     double DEP = SEP - 511.; int iDEP = 2;
     double ROI = 2039.; int iROI = 3;
     cout<<"Example: FEP window is "<<FEP - GetHalfROI(FEP)<<"-"<<FEP + GetHalfROI(FEP)<<endl;
-    
+
     int UnitsPerBin = 1;
     double xlow = -3000., xup = 1000.;
     int nbinsx = (xup-xlow)/UnitsPerBin;
@@ -108,7 +87,7 @@ int main (int argc, char* argv[])
     /////////// Make channel list
     ///////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     TFile* ChannelMapFile = new TFile("./DSChannelMaps.root");
     MJTChannelMap *chmap = (MJTChannelMap*)ChannelMapFile->Get(Form("ChannelMapDS%d",DS));
     std::map<int,string> channelmap; // this will map between channel # and previous-event timestamp
@@ -126,13 +105,13 @@ int main (int argc, char* argv[])
                 {
                     tempstringStream << "C" << c << "P" << p << "D" << d;
                     tempstring = tempstringStream.str();
-                    
+
                     tempchan = chmap->GetInt(chmap->GetDetectorName(c,p,d),"kIDHi"); // load HG chan #s
                     channellist.push_back(tempchan);
                     channelmap.insert(std::pair<int,string>(tempchan,tempstring));
-                    
+
                     // Do not include LG channels
-                    
+
                     tempstringStream.str(""); // reset the stringstream
                 }
             }
@@ -142,16 +121,16 @@ int main (int argc, char* argv[])
     //for(unsigned int list_i = 0; list_i < channellist.size(); list_i++) {
     //    cout<<channellist[list_i]<<" "<<channelmap.at(channellist[list_i])<<endl;
     //}
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////
     /////////// Make channel-to-TH1D_array map
     ///////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     std::map<int, vector<TH1D*> > chanHistMap;
     char histName[200];
-    
+
     // INITIALIZE THE MAP OF VECTORS TO HAVE BLANK HISTS
     for(unsigned int list_i = 0; list_i < channellist.size(); list_i++)
     {
@@ -162,19 +141,19 @@ int main (int argc, char* argv[])
             chanHistMap.at(channellist[list_i]).push_back(new TH1D(histName,histName,nbinsx,xlow,xup));
         }
     }
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////
     /////////// Make chain
     ///////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     TChain* ch = new TChain("mjdTree", "mjdTree");
     for(int i_run = startRun; i_run<=endRun; i_run++)
     {
         ch->Add(Form("/global/project/projectdirs/majorana/data/mjd/surfmjd/data/gatified/P3LQG/mjd_run%d.root",i_run));
     }
-    
+
     vector<double>* channel = NULL;
     vector<double>* TSCurrent50nsMax = NULL;
     vector<double>* TSCurrent100nsMax = NULL;
@@ -182,9 +161,9 @@ int main (int argc, char* argv[])
     vector<double>* trapENF = NULL;
     vector<double>* trapENFCal = NULL;
     int run = 0;
-    
+
     double avse = 0.;
-    
+
     ch->SetBranchAddress("channel",&channel);
     ch->SetBranchAddress("TSCurrent50nsMax",&TSCurrent50nsMax);
     ch->SetBranchAddress("TSCurrent100nsMax",&TSCurrent100nsMax);
@@ -192,7 +171,7 @@ int main (int argc, char* argv[])
     ch->SetBranchAddress("trapENF",&trapENF);
     ch->SetBranchAddress("trapENFCal",&trapENFCal);
     ch->SetBranchAddress("run",&run);
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////
     /////////// Fill hists
@@ -242,26 +221,26 @@ int main (int argc, char* argv[])
             }
         }
     }
-    
+
     // EXAMPLE PLOT
     /*
      TCanvas* c = new TCanvas();
      c->cd();
      chanHistMap.at(1298).at(iFEP)->Draw("HIST");
      */
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////
     /////////// Write to file
     ///////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     char fName[200];
     sprintf(fName,Form("hists_%d_%d_calAvsE.root",startRun,endRun));
-    
+
     TFile* f = new TFile(fName,"CREATE");
     f->cd();
-    
+
     // LOOP MAP AND VECTORS OF HISTS
     int histEntries = 0;
     int bin_0 = 0;
@@ -289,7 +268,7 @@ int main (int argc, char* argv[])
     f->Close();
     //delete f;
     //f = 0;
-    
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////
     /////////// Closeout

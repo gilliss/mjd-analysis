@@ -11,15 +11,12 @@ Description:
 ====================
 Plot AvsE distributions from the 208Tl 2614 keV DEP region of calibration runs. Focus on the good HG channels in the following DS4 calibration run ranges.
 60001442 60001461
-60001508 60001521 <--- last "good" cal of DS4
+60001508 60001521 ...
 60001578 60001592
 60001720 60001732
 60001855 60001868
 60001914 60001926
 
-Excluded HG channels are: 1108,1110,1138,1140,1142,1144,1168,1202,1206,1208,1234,1238,1268,1302,1304,1328
-
-Note that some directories, plotting parameters, etc were hardcoded for expediency.
 ====================
 Instructions:
 ====================
